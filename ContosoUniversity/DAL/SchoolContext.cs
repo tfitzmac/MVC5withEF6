@@ -14,6 +14,12 @@ namespace ContosoUniversity.DAL
         public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
         public DbSet<Person> People { get; set; }
 
+        public SchoolContext()
+            : base("name=SchoolContext")
+        {
+            Database.SetInitializer<SchoolContext>(new MigrateDatabaseToLatestVersion<SchoolContext, ContosoUniversity.Migrations.Configuration>());
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
